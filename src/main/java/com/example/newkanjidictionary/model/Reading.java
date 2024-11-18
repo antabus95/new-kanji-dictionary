@@ -1,6 +1,7 @@
 package com.example.newkanjidictionary.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
@@ -36,4 +37,5 @@ public class Reading {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference
     private Kanji kanji;
+
 }

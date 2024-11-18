@@ -70,7 +70,7 @@ public class Kanji {
     @JsonBackReference
     private Radical radical;
 
-    @OneToMany(mappedBy = "kanji")
+    @OneToMany(mappedBy = "kanji", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Reading> readings = new ArrayList<>();
 

@@ -2,6 +2,7 @@ package com.example.newkanjidictionary.service;
 
 import com.example.newkanjidictionary.model.Kanji;
 import jakarta.persistence.OrderBy;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public interface KanjiService {
     List<Kanji> findAllKanjiOfSchoolGrade(Integer schoolGrade);
     List<Kanji> findAllJoyoKanji();
     List<Kanji> findAllJinmeiyoKanji();
+    @Transactional
     Kanji saveKanji(Kanji kanji);
     Kanji updateKanji(Kanji kanji);
     Kanji findKanjiBySpelling(String spelling);
