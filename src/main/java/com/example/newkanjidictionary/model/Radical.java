@@ -1,7 +1,11 @@
 package com.example.newkanjidictionary.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -12,11 +16,14 @@ public class Radical {
     private Integer id;
     @Column(unique = true, nullable = false)
     private String name;
-    @Column(unique = true, nullable = false)
-    private String mainForm;
-    private String leftForm;
-    private String rightForm;
-    private String upForm;
-    private String downForm;
-    private String alternateForm;
+    private Integer number;
+
+    @OneToMany(mappedBy = "radical")
+    @JsonManagedReference
+    private List<Kanji> kanjies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "radical")
+    @JsonManagedReference
+    private List<RadicalForm> radicalForms = new ArrayList<>();
+
 }

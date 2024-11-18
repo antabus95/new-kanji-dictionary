@@ -1,7 +1,9 @@
 package com.example.newkanjidictionary.controller;
 
 import com.example.newkanjidictionary.model.Kanji;
+import com.example.newkanjidictionary.model.Reading;
 import com.example.newkanjidictionary.service.KanjiService;
+import com.example.newkanjidictionary.service.ReadingService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import java.util.List;
 public class KanjiController {
 
     private final KanjiService kanjiService;
+    private final ReadingService readingService;
 
     @GetMapping
     public List<Kanji> findAllKanji() {
@@ -20,8 +23,17 @@ public class KanjiController {
     }
     //Add new Kanji to DB
     @PostMapping("save_kanji")
-    public Kanji saveKanji(@RequestBody Kanji kanji) {
-        return kanjiService.saveKanji(kanji);
+    public void saveKanji(@RequestBody Kanji kanji) {
+        Kanji savedKanji = kanjiService.saveKanji(kanji);
+        for (Reading r : savedKanji.getReadings()) {
+            Reading reading = new Reading();
+            reading.setText(r.getText());
+            reading.setType(r.getType());
+            reading.setLevel(r.getLevel());
+            reading.setChineseCategory(r.getChineseCategory());
+            reading.setKanji(savedKanji);
+            readingService.saveReading(reading);
+        }
     }
     //Find Kanji by its spelling
     @GetMapping("/search/spelling={spelling}")

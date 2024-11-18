@@ -1,9 +1,16 @@
 package com.example.newkanjidictionary.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -45,8 +52,27 @@ public class Kanji {
     )
     private Set<Kanji> simplifiedFormOfKanji = new HashSet<Kanji>();
     */
+    /*
+    @ManyToMany(fetch = FetchType.LAZY,
+    cascade =  {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "kanji_readings",
+    joinColumns = {@JoinColumn(name = "reading_id")},
+    inverseJoinColumns = {@JoinColumn(name = "kanji_id")})
+    private Set<Reading> readings = new HashSet<>();
+    */
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "radical_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    //@JsonIgnore
+    @JsonBackReference
+    private Radical radical;
 
-
+    @OneToMany(mappedBy = "kanji")
+    @JsonManagedReference
+    private List<Reading> readings = new ArrayList<>();
 
 
 }
