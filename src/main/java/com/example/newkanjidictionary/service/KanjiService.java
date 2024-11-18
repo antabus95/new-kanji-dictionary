@@ -13,7 +13,6 @@ public interface KanjiService {
     List<Kanji> findAllKanjiOfSchoolGrade(Integer schoolGrade);
     List<Kanji> findAllJoyoKanji();
     List<Kanji> findAllJinmeiyoKanji();
-    @Transactional
     Kanji saveKanji(Kanji kanji);
     Kanji updateKanji(Kanji kanji);
     Kanji findKanjiBySpelling(String spelling);
