@@ -19,7 +19,7 @@ public class KanjiController {
 
     @GetMapping
     public List<Kanji> findAllKanji() {
-        return kanjiService.findAllKanji();
+        return kanjiService.getAllKanji();
     }
     //Add new Kanji to DB
     @PostMapping("save_kanji")
@@ -29,38 +29,43 @@ public class KanjiController {
     //Find Kanji by its spelling
     @GetMapping("/search/spelling={spelling}")
     public Kanji findKanjiBySpelling(@PathVariable String spelling) {
-        return kanjiService.findKanjiBySpelling(spelling);
+        return kanjiService.getKanjiBySpelling(spelling);
     }
     //Find Kanji by its base meaning
     @GetMapping("/search/meaning={baseMeaning}")
     public List<Kanji> findKanjiByBaseMeaning(@PathVariable String baseMeaning) {
-        return kanjiService.findKanjiByBaseMeaning(baseMeaning);
+        return kanjiService.getKanjiByBaseMeaning(baseMeaning);
     }
 
     //Find all Kanji of JLPT Level
     @GetMapping("/search/kanji_jlpt-n{jlptLvl}")
     public List<Kanji> findAllKanjiOfJlptLvl(@PathVariable Integer jlptLvl) {
-        return kanjiService.findAllKanjiOfJlptLvl(jlptLvl);
+        return kanjiService.getAllKanjiOfJlptLvl(jlptLvl);
     }
     //Find all Kanji of Kanken Level
     @GetMapping("/search/kanji_kanken-{kankenLvl}")
     public List<Kanji> findAllKanjiOfKankenLvl(@PathVariable Float kankenLvl) {
-        return kanjiService.findAllKanjiOfKankenLvl(kankenLvl);
+        return kanjiService.getAllKanjiOfKankenLvl(kankenLvl);
     }
     //Find all Kanji of School Grade
     @GetMapping("/search/kanji_grade-{schoolGrade}")
     public List<Kanji> findAllKanjiOfSchoolGrade(@PathVariable Integer schoolGrade) {
-        return kanjiService.findAllKanjiOfSchoolGrade(schoolGrade);
+        return kanjiService.getAllKanjiOfSchoolGrade(schoolGrade);
     }
     //Find all 常用漢字
     @GetMapping("/search/kanji_joyo")
     public List<Kanji> findAllJoyoKanji() {
-        return kanjiService.findAllJoyoKanji();
+        return kanjiService.getAllJoyoKanji();
     }
     //Find all 人名用漢字
     @GetMapping("/search/kanji_jinmeiyo")
     public List<Kanji> findAllJinmeiyoKanji() {
-        return kanjiService.findAllJinmeiyoKanji();
+        return kanjiService.getAllJinmeiyoKanji();
+    }
+    //Find all Kanji with reading
+    @GetMapping("/search/reading={reading}")
+    public List<Kanji> findAllKanjiOfReading(@PathVariable String reading) {
+        return kanjiService.getAllKanjiByReading(reading);
     }
     //Update Kanji info
     @PutMapping("update_kanji")

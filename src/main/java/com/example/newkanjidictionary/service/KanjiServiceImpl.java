@@ -15,7 +15,7 @@ public class KanjiServiceImpl implements KanjiService {
     private final KanjiRepository kanjiRepository;
 
     @Override
-    public List<Kanji> findAllKanji() {
+    public List<Kanji> getAllKanji() {
         return kanjiRepository.findAll();
     }
 
@@ -30,35 +30,40 @@ public class KanjiServiceImpl implements KanjiService {
     }
 
     @Override
-    public Kanji findKanjiBySpelling(String spelling) {
+    public Kanji getKanjiBySpelling(String spelling) {
         return kanjiRepository.findKanjiBySpelling(spelling);
     }
 
     @Override
-    public List<Kanji> findKanjiByBaseMeaning(String baseMeaning) {
+    public List<Kanji> getKanjiByBaseMeaning(String baseMeaning) {
         return kanjiRepository.findKanjiByBaseMeaning(baseMeaning);
     }
 
     @Override
-    public List<Kanji> findAllKanjiOfJlptLvl(Integer jlptLvl) {
+    public List<Kanji> getAllKanjiOfJlptLvl(Integer jlptLvl) {
         return kanjiRepository.findAllKanjiOfJlptLvl(jlptLvl);
     }
     @Override
-    public List<Kanji> findAllKanjiOfKankenLvl(Float kankenLvl) {
+    public List<Kanji> getAllKanjiOfKankenLvl(Float kankenLvl) {
         return kanjiRepository.findAllKanjiOfKankenLvl(kankenLvl);
     }
     @Override
-    public List<Kanji> findAllKanjiOfSchoolGrade(Integer schoolGrade) {
+    public List<Kanji> getAllKanjiOfSchoolGrade(Integer schoolGrade) {
         return kanjiRepository.findAllKanjiOfSchoolGrade(schoolGrade);
     }
     @Override
-    public List<Kanji> findAllJoyoKanji() {
+    public List<Kanji> getAllJoyoKanji() {
         return kanjiRepository.findAllJoyoKanji();
     }
 
     @Override
-    public List<Kanji> findAllJinmeiyoKanji() {
+    public List<Kanji> getAllJinmeiyoKanji() {
         return kanjiRepository.findAllJinmeiyoKanji();
+    }
+
+    @Override
+    public List<Kanji> getAllKanjiByReading(String reading){
+        return kanjiRepository.findAllByReading(reading);
     }
 
     @Override
