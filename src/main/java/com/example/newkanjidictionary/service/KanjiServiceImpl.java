@@ -67,6 +67,11 @@ public class KanjiServiceImpl implements KanjiService {
     }
 
     @Override
+    public List<Kanji> getAllKanjiByStrokeCount(Integer strokeCount) {
+        return kanjiRepository.findAllKanjiByStrokeCount(strokeCount);
+    }
+
+    @Override
     @Transactional
     public void deleteKanji(String spelling) {
         kanjiRepository.deleteKanjiBySpelling(spelling);

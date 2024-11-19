@@ -14,6 +14,7 @@ public interface KanjiService {
     List<Kanji> getAllJoyoKanji();
     List<Kanji> getAllJinmeiyoKanji();
     List<Kanji> getAllKanjiByReading(String reading);
+    List<Kanji> getAllKanjiByStrokeCount(Integer strokeCount);
     Kanji saveKanji(Kanji kanji);
     Kanji updateKanji(Kanji kanji);
     Kanji getKanjiBySpelling(String spelling);

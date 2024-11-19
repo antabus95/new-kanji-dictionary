@@ -31,4 +31,7 @@ public interface KanjiRepository extends JpaRepository<Kanji, Integer> {
 
     @Query("SELECT k FROM Kanji k JOIN Reading r ON r.text = ?1 AND r.kanji = k")
     List<Kanji> findAllByReading(String reading);
+
+    @Query("SELECT k FROM Kanji k WHERE k.strokeCount = ?1")
+    List<Kanji> findAllKanjiByStrokeCount(Integer strokeCount);
 }

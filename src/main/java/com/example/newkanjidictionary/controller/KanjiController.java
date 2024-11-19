@@ -15,7 +15,6 @@ import java.util.List;
 public class KanjiController {
 
     private final KanjiService kanjiService;
-    private final ReadingService readingService;
 
     @GetMapping
     public List<Kanji> findAllKanji() {
@@ -61,6 +60,10 @@ public class KanjiController {
     @GetMapping("/search/kanji_jinmeiyo")
     public List<Kanji> findAllJinmeiyoKanji() {
         return kanjiService.getAllJinmeiyoKanji();
+    }
+    @GetMapping("/search/stroke_count={strokeCount}")
+    public List<Kanji> findAllKanjiByStrokeCount(@PathVariable Integer strokeCount){
+        return kanjiService.getAllKanjiByStrokeCount(strokeCount);
     }
     //Find all Kanji with reading
     @GetMapping("/search/reading={reading}")

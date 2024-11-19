@@ -17,12 +17,14 @@ public class Radical {
     @Column(unique = true, nullable = false)
     private String name;
     private Integer number;
+    private Integer strokeCount;
 
+    /*
     @OneToMany(mappedBy = "radical")
     @JsonManagedReference
     private List<Kanji> kanjies = new ArrayList<>();
-
-    @OneToMany(mappedBy = "radical")
+    */
+    @OneToMany(mappedBy = "radical", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<RadicalForm> radicalForms = new ArrayList<>();
 

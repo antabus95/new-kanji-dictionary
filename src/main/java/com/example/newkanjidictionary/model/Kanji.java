@@ -63,16 +63,25 @@ public class Kanji {
     inverseJoinColumns = {@JoinColumn(name = "kanji_id")})
     private Set<Reading> readings = new HashSet<>();
     */
+
+    /*
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "radical_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
     @JsonBackReference
     private Radical radical;
+    */
 
     @OneToMany(mappedBy = "kanji", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Reading> readings = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "radicalForm_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonBackReference
+    private RadicalForm radicalForm;
 
 
 }
